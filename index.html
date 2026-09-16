@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE UNSOLVED FILES // FORENSIC UNIT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Birds+of+Paradise&family=Special+Elite&family=Oswald:wght@700&display=swap');
+
+        :root {
+            --yellow: #FFE600;
+            --black: #0D0D0D;
+            --card-bg: #1A1A1A;
+            --border-yellow: #FFE600;
+            --text-light: #EEEEEE;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--text-light);
+            font-family: 'Special Elite', monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .caution-tape {
+            background: repeating-linear-gradient(
+                -45deg,
+                #000,
+                #000 20px,
+                var(--yellow) 20px,
+                var(--yellow) 40px
+            );
+            width: 100vw;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .caution-text {
+            background-color: #000;
+            color: var(--yellow);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 2px 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Birds of Paradise', cursive, 'Special Elite';
+            color: var(--yellow);
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(255, 230, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr 1fr;
+            width: 100%;
+            max-width: 1050px;
+            gap: 12px;
+            position: relative;
+        }
+
+        .col-header {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-yellow);
+            padding: 20px;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .col-header h2 {
+            font-family: 'Birds of Paradise', cursive, sans-serif;
+            font-size: 2.2rem;
+            color: var(--yellow);
+            margin: 10px 0 0 0;
+        }
+
+        .suspect-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border: 2px solid var(--yellow);
+            filter: contrast(110%) grayscale(30%);
+        }
+
+        .feature-label {
+            background-color: #111;
+            border-left: 4px solid var(--yellow);
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: var(--yellow);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .feature-val {
+            background-color: var(--card-bg);
+            border: 1px solid #2A2A2A;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .select-clue-btn {
+            background: #000;
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            padding: 6px 12px;
+            font-family: 'Special Elite', monospace;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .select-clue-btn:hover {
+            background: var(--yellow);
+            color: #000;
+        }
+
+        .select-clue-btn.selected {
+            background: var(--yellow);
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(255, 230, 0, 0.6);
+        }
+
+        .verdict-panel {
+            width: 100%;
+            max-width: 1050px;
+            margin-top: 35px;
+            background-color: var(--card-bg);
+            border: 2px dashed var(--yellow);
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .verdict-title {
+            font-size: 1.1rem;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .verdict-output {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            min-height: 45px;
+            color: var(--yellow);
+        }
+
+        .evidence-counter {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="caution-tape">
+        <span class="caution-text">CRIME SCENE — DO NOT CROSS — FORENSIC EVIDENCE</span>
+    </div>
+
+    <header>
+        <h1>The Unsolved Files</h1>
+        <div class="subtitle">INTERACTIVE SUSPECT CHARACTERISTIC MATRIX</div>
+    </header>
+
+    <div class="comparison-grid">
+        <div class="col-header" style="text-align: left; display: flex; align-items: flex-end;">
+            <strong style="color: var(--yellow);">EVIDENCE PARAMETERS</strong>
+        </div>
+        <div class="col-header">
+            <!-- Save your image as amanda.jpg in the same folder as this HTML file -->
+            <img src="amanda.jpg" alt="Amanda" class="suspect-img">
+            <h2>Amanda</h2>
+            <small style="color: #888;">SUSPECT A</small>
+        </div>
+        <div class="col-header">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Samantha" class="suspect-img">
+            <h2>Samantha</h2>
+            <small style="color: #888;">SUSPECT B</small>
+        </div>
+
+        <div class="feature-label">CHEMICAL REACTION</div>
+        <div class="feature-val">
+            <span>Fizzes with Citric Acid</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Clumps with Iodine Solution</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+
+        <div class="feature-label">BODY MARKINGS</div>
+        <div class="feature-val">
+            <span>Star-shaped face tattoo</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Crescent moon ankle tattoo</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+
+        <div class="feature-label">FINGERPRINT PATTERN</div>
+        <div class="feature-val">
+            <span>Double-Loop Pattern</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Triangular Whorl Pattern</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+
+        <div class="feature-label">FOOTWEAR IMPRESSION</div>
+        <div class="feature-val">
+            <span>Size 7 Tread</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Size 5 Tread</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+
+        <div class="feature-label">DOMINANT HAND</div>
+        <div class="feature-val">
+            <span>Right-Handed</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Left-Handed</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+
+        <div class="feature-label">UV LIGHT REACTION</div>
+        <div class="feature-val">
+            <span>Glows blue under UV</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Amanda', this)">SELECT CLUE</button>
+        </div>
+        <div class="feature-val">
+            <span>Glows yellow under UV</span>
+            <button class="select-clue-btn" onclick="selectEvidence('Samantha', this)">SELECT CLUE</button>
+        </div>
+    </div>
+
+    <div class="verdict-panel">
+        <div class="verdict-title">[ SYSTEM EVIDENCE EVALUATION ]</div>
+        <div id="verdictOutput" class="verdict-output">FLAG EVIDENCE MATCHES ABOVE</div>
+        <div id="evidenceCounter" class="evidence-counter">Clues Selected: 0</div>
+    </div>
+
+    <div class="caution-tape" style="margin-top: 30px; margin-bottom: 0;">
+        <span class="caution-text">CRIME SCENE — DO NOT CROSS — FORENSIC EVIDENCE</span>
+    </div>
+
+    <script>
+        let selectedClues = {
+            Amanda: 0,
+            Samantha: 0
+        };
+
+        function selectEvidence(suspect, btn) {
+            if (btn.classList.contains('selected')) {
+                btn.classList.remove('selected');
+                btn.innerText = "SELECT CLUE";
+                selectedClues[suspect]--;
+            } else {
+                btn.classList.add('selected');
+                btn.innerText = "FLAGGED ✓";
+                selectedClues[suspect]++;
+            }
+
+            updateVerdict();
+        }
+
+        function updateVerdict() {
+            const output = document.getElementById('verdictOutput');
+            const counter = document.getElementById('evidenceCounter');
+            
+            const totalSelected = selectedClues.Amanda + selectedClues.Samantha;
+            counter.innerText = `Total Clues Selected: ${totalSelected}`;
+
+            if (totalSelected === 0) {
+                output.innerText = "FLAG EVIDENCE MATCHES ABOVE";
+                output.style.color = "var(--yellow)";
+            } else if (selectedClues.Amanda > selectedClues.Samantha) {
+                output.innerText = "PRIMARY MATCH IDENTIFIED: AMANDA";
+                output.style.color = "#FF3333";
+            } else if (selectedClues.Samantha > selectedClues.Amanda) {
+                output.innerText = "PRIMARY MATCH IDENTIFIED: SAMANTHA";
+                output.style.color = "#FF3333";
+            } else {
+                output.innerText = "EVIDENCE INCONCLUSIVE: EQUAL MATCHES";
+                output.style.color = "var(--yellow)";
+            }
+        }
+    </script>
+</body>
+</html>
